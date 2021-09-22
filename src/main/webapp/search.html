@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="search.css">
+</head>
+<body>
+	<nav>
+		
+			<a>Home</a>
+			<a>About</a>
+			<a href="adminLogin.html">Admin Login</a>
+		
+	</nav>
+
+	<section>
+		<form class="SearchBar" action="search">
+			<select name="source" required>
+						<option>Select Source</option>
+						<option value="New Delhi">New Delhi</option>
+						<option value="Bengluru">Bengluru</option>
+						<option value="Hyderabad">Hyderabad</option>
+			</select>
+			<select name="Destination" required>
+							<option>Select Destination</option>
+							<option value="Kolkata">Kolkata</option>
+							<option value="Mumbai">Mumbai</option>
+							<option value="Delhi">New Delhi</option>
+							<option value="Kolkata">Kolkata</option>
+							<option value="Mumbai">Mumbai</option>
+							<option value="Bengluru">Bengluru</option>
+							<option value="Hyderabad">Hyderabad</option>
+			</select>
+			<input type="date" id="start" name="bokingDate" placeholder="Enter Date of journey" required>
+			<input type="number" id="numberofPersonTraveling" name="no of seats" placeholder="No of seats" required>
+			<button type="submit">Search</button>
+		</form>	
+				
+	</section>
+
+</body>
+</html>
