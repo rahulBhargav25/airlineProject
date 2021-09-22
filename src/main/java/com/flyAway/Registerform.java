@@ -21,14 +21,16 @@ public class Registerform extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		//Session obj to stote user specified data for easier and faster access
 		HttpSession session = request.getSession();
+		//values retrieved from input hidden form field
 		String flightId=request.getParameter("flightId");
 		String flightName=request.getParameter("flightName");
 		String ticketPrice=request.getParameter("tp");
 		String seats = request.getParameter("seats");
 		String date = request.getParameter("Date");
-
+		
+		//values of mentioned param stored in session for easier and faster access
 		session.setAttribute("flightId", flightId);
 		session.setAttribute("flightName", flightName);
 		session.setAttribute("ticketPrice", ticketPrice);

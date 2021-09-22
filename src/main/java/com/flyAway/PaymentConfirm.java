@@ -24,8 +24,10 @@ public class PaymentConfirm extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Session obj to get user specified data for easier and faster access
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
+		//retrieving data from session using getAttribute method of session interface
 		String flightId = (String) session.getAttribute("flightId");
 		String flightName = (String) session.getAttribute("flightName");
 		String ticketPrice = (String) session.getAttribute("ticketPrice");

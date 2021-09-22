@@ -36,10 +36,13 @@ public class search extends HttpServlet {
 		 
 		
 		
-		
+		//conversion of double into string
 		final DecimalFormat df2 = new DecimalFormat("#.##");
+		
 		Connection connection = null;
 		PrintWriter out = response.getWriter();
+		
+		//accessing parameters from form field input of seach.html
 		String source = request.getParameter("source");
 		String destination = request.getParameter("Destination");
 		String date = request.getParameter("bokingDate");
@@ -48,8 +51,11 @@ public class search extends HttpServlet {
 		
 		
 			try {
+				//loading driver
 				Class.forName("com.mysql.cj.jdbc.Driver");
+				//jdbc connection passed in connection obj
 				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/flyaway", "root", "root");
+				//SQL query to access data from db as per user specification
 				String sql="SELECT flightId, flightsName, ticketPrice from flyaway.flights "
 						+ "JOIN mastersourcedestination ON flights.sdId=mastersourcedestination.sdId JOIN airlines ON flights.airlineId=airlines.idairlines "
 						+ "where source= "+   
@@ -60,9 +66,9 @@ public class search extends HttpServlet {
 						+"'"
 						+destination
 						+"'";
-				System.out.println(sql);
+				//statement obj
 				Statement st = connection.createStatement();
-				
+				//ResultSet to access data from db 
 				ResultSet rs = st.executeQuery(sql);
 				
 				out.println("<html>");
@@ -195,7 +201,7 @@ public class search extends HttpServlet {
 					double price = rs.getDouble(3);
 					double ticketPrice = price*noOfPassengers;
 					String tp = df2.format(ticketPrice);
-					
+					//data passed on to Registerform using hidden input fields
 					out.println("<tr><form method="+"post"+" action="+"Registerform"+">");
 					out.println("<td><input type="+"hidden"+" name="+"seats"+" value="+seats+"><input type="+"hidden"+" name="+"flightId"+" value="+flightId+">"+flightId+"</td>");
 					out.println("<td><input type="+"hidden"+" name="+"Date"+" value="+date+"><input type="+"hidden"+" name="+"flightName"+" value="+flightName+">"+flightName+"</td>");

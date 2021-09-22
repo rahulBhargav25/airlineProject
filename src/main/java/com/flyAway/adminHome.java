@@ -24,10 +24,15 @@ public class adminHome extends HttpServlet {
 		Connection connection = null;
 		PrintWriter out = response.getWriter();
 		try {
+			//loading driver
 			Class.forName("com.mysql.cj.jdbc.Driver");
+			//jdbc connection passed in connection obj
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/flyaway", "root", "root");
+			//SQL query to access data from db as per user specification
 			String sql = "SELECT * FROM flyaway.mastersourcedestination";
+			//statement obj
 			Statement st =connection.createStatement();
+			//ResultSet to access data from db 
 			ResultSet rs = st.executeQuery(sql);
 			
 			

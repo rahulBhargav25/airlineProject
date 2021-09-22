@@ -28,20 +28,27 @@ public class changePassword extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//data retrieval from input form field 
 		String oldPassword = request.getParameter("oldpassword");
 		String password = request.getParameter("password");
 		String confirmPassword = request.getParameter("confirmPassword");
 		if(password.equals(confirmPassword)) {
 			Connection connection = null;
 			try {
+				//loading driver
 				Class.forName("com.mysql.cj.jdbc.Driver");
+				//jdbc connection passed in connection obj
 				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/flyaway", "root", "root");
+				//sql query
 				String verifyPassword = "SELECT * FROM flyaway.adminlogin";
 				
 				String sql="UPDATE `flyaway`.`adminlogin` SET `adminPassword` ='"+ password+"' WHERE (`idadminLogin` = '1');\r\n"
 						+ "";
+				//statement obj
 				Statement st = connection.createStatement();
+				//ResultSet to access data from db 
 				ResultSet rs = st.executeQuery(verifyPassword);
+				//admin validation using Resultset to retrieve data fromDB
 				while(rs.next()) {
 					String oldpassverify = rs.getString(3);
 					if(oldPassword.equals(oldpassverify)) {
